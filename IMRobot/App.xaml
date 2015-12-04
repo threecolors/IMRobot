@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:IMRobot"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Windows.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Tab.xaml" ></ResourceDictionary>
+                <ResourceDictionary Source="Tabitem.xaml" ></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

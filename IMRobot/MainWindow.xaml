@@ -5,38 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IMRobot"
         mc:Ignorable="d"
-        Title="IMRobot" Height="500" Width="800" Icon="/Resource/ico/Robot.ico"  WindowStyle="None"  AllowsTransparency="True"  WindowStartupLocation="CenterScreen">
+        Title="IMRobot" Height="500" Width="800" Icon="/Resource/ico/Robot.ico" Style="{DynamicResource NoResize_window}"  WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="FIcon" TargetType="TextBlock">
-
             <Setter Property="FontFamily" Value="/Resource/ico/#iconfont"></Setter>
-
-            <!--<Setter Property="Foreground" Value="{StaticResource TextForeground}"/>-->
-
             <Setter Property="TextAlignment" Value="Center"/>
-
             <Setter Property="HorizontalAlignment" Value="Center"/>
-
             <Setter Property="VerticalAlignment" Value="Center"/>
-
             <Setter Property="FontSize" Value="15"/>
-
             <Setter Property="Margin" Value="7"/>
-
         </Style>
     </Window.Resources>
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
                 <DockPanel Grid.Row="0" LastChildFill="True" Name="TitleBar">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"  Margin="10,10,0,5">
                         <Image  Source="./Resource/ico/Robot.ico" HorizontalAlignment="Left"></Image>
@@ -51,6 +38,26 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
+            <TabControl Style="{DynamicResource TabControlStyle}">
+                <TabItem  Header="AAAA" Style="{DynamicResource TabItemStyle}" Margin="10,0,0,0" Height="70" Width="70">
+                    <TabItem.Background>
+                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
+                    </TabItem.Background>
+                    <Grid>
+                        <TextBlock>aassdasvasdf</TextBlock>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="BBBBB"  Style="{DynamicResource TabItemStyle}" Margin="100,0,0,0" Height="70" Width="70" >
+                    <TabItem.Background>
+                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
+                    </TabItem.Background>
+                </TabItem>
+                <TabItem Header="CCCCC"  Style="{DynamicResource TabItemStyle}" Margin="190,0,0,0" Height="70" Width="70" >
+                    <TabItem.Background>
+                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
+                    </TabItem.Background>
+                </TabItem>
+            </TabControl>
         </Grid>
         <Grid Grid.Row="2">
             <StatusBar>

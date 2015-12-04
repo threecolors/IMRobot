@@ -41,6 +41,9 @@ namespace IMRobot
             }
             else if (this.WindowState.Equals(WindowState.Normal))
             {
+                ////设置最大化为工作区的大小
+                this.MaxHeight = SystemParameters.WorkArea.Height;
+                this.Width = SystemParameters.WorkArea.Width;
                 this.WindowState = WindowState.Maximized;
             }
 

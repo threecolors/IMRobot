@@ -39,24 +39,19 @@
         </Grid>
         <Grid Grid.Row="1">
             <TabControl Style="{DynamicResource TabControlStyle}">
-                <TabItem  Header="AAAA" Style="{DynamicResource TabItemStyle}" Margin="10,0,0,0" Height="70" Width="70">
+                <TabItem  Header="QQ" Style="{DynamicResource TabItemStyle}" Margin="10,0,0,0" Height="70" Width="70">
                     <TabItem.Background>
-                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
+                        <ImageBrush ImageSource="./Resource/ico/qq.ico" Stretch="Uniform"></ImageBrush>
                     </TabItem.Background>
                     <Grid>
                         <TextBlock>aassdasvasdf</TextBlock>
                     </Grid>
                 </TabItem>
-                <TabItem Header="BBBBB"  Style="{DynamicResource TabItemStyle}" Margin="100,0,0,0" Height="70" Width="70" >
+                <!--<TabItem Header="微信"  Style="{DynamicResource TabItemStyle}" Margin="100,0,0,0" Height="70" Width="70" >
                     <TabItem.Background>
-                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
+                        <ImageBrush ImageSource="./Resource/ico/webchat.ico" Stretch="Uniform"></ImageBrush>
                     </TabItem.Background>
-                </TabItem>
-                <TabItem Header="CCCCC"  Style="{DynamicResource TabItemStyle}" Margin="190,0,0,0" Height="70" Width="70" >
-                    <TabItem.Background>
-                        <ImageBrush ImageSource="./Resource/fullbox_netspeed.png" Stretch="Uniform"></ImageBrush>
-                    </TabItem.Background>
-                </TabItem>
+                </TabItem>-->
             </TabControl>
         </Grid>
         <Grid Grid.Row="2">

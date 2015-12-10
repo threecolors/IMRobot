@@ -58,5 +58,15 @@ namespace IMRobot
             }
 
         }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

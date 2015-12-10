@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IMRobot"
         mc:Ignorable="d"
-        Title="QQLoginWindow" Height="300" Width="350" Style="{DynamicResource NoResize_window}" FontSize="9">
+        Title="QQLoginWindow" Height="300" Width="350" Style="{DynamicResource NoResize_window}" FontSize="15">
     <Window.Resources>
         <Style x:Key="FIcon" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="/Resource/ico/#iconfont"></Setter>
@@ -17,7 +17,7 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <Grid Margin="40">
+        <Grid Margin="10,40,40,40">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -29,15 +29,15 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center">账  号：</TextBlock>
-            <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Name="Account" LostFocus="Account_LostFocus"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="1" Margin="13" Name="Account" LostFocus="Account_LostFocus"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center">密  码：</TextBlock>
-            <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Name="pawd"></TextBox>
+            <TextBox Grid.Row="1" Grid.Column="1" Margin="13" Name="pawd"></TextBox>
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">验证码：</TextBlock>
-            <Image Grid.Column="1" Grid.Row="2" Width="50" HorizontalAlignment="Left" Name="verImage"></Image>
-            <TextBox Grid.Column="1" Grid.Row="2" Width="50" HorizontalAlignment="Right" Name="verCode"></TextBox>
+            <Image Grid.Column="1" Grid.Row="2" Margin="13,0,0,0" Width="90" Height="50" HorizontalAlignment="Left" Name="verImage"></Image>
+            <TextBox Grid.Column="1" Grid.Row="2" Width="80" Height="30" Margin="3,0,13,0" HorizontalAlignment="Right" Name="verCode"></TextBox>
         </Grid>
         <TextBlock Name="LogMinimize"  Style="{StaticResource FIcon}"  HorizontalAlignment="Right" VerticalAlignment="Top"  Text="&#xe619;" Margin="0,0,15,0" ></TextBlock>
         <TextBlock Name="LogCloseWindow"  Style="{StaticResource FIcon}" HorizontalAlignment="Right" VerticalAlignment="Top"  Text="&#xe618;" Margin="0,0,0,0"  ></TextBlock>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="登录" VerticalAlignment="Top"  Margin="5,2,0,0" FontSize="10" Foreground="White"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="登录" VerticalAlignment="Top"  Margin="5,2,0,0" FontSize="20" Foreground="White"/>
     </Grid>
 </Window>

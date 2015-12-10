@@ -35,6 +35,11 @@
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center">验证码：</TextBlock>
             <Image Grid.Column="1" Grid.Row="2" Margin="13,0,0,0" Width="90" Height="50" HorizontalAlignment="Left" Name="verImage"></Image>
             <TextBox Grid.Column="1" Grid.Row="2" Width="80" Height="30" Margin="3,0,13,0" HorizontalAlignment="Right" Name="verCode"></TextBox>
+            <StackPanel Grid.Row="3"  Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Grid.Row="3"  Grid.ColumnSpan="2" Width="50" Height="30" Margin="5">登录</Button>
+                <Button Grid.Row="3"  Grid.ColumnSpan="2" Width="50" Height="30" Margin="5">取消</Button>
+            </StackPanel>
+         
         </Grid>
         <TextBlock Name="LogMinimize"  Style="{StaticResource FIcon}"  HorizontalAlignment="Right" VerticalAlignment="Top"  Text="&#xe619;" Margin="0,0,15,0" ></TextBlock>
         <TextBlock Name="LogCloseWindow"  Style="{StaticResource FIcon}" HorizontalAlignment="Right" VerticalAlignment="Top"  Text="&#xe618;" Margin="0,0,0,0"  ></TextBlock>

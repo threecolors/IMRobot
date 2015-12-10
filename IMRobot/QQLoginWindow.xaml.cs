@@ -48,9 +48,9 @@ namespace IMRobot
                         ////不需要验证码
                         break;
                     case "1":
+                        ////需要验证码
                         string verImageUrl = string.Format("https://ssl.captcha.qq.com/getimage?uin={0}&aid=522005705&cap_cd=gF17HWOm90FqAvJdwqqxIU5wDm2XQ_NJYmbKRRPQQUcEMxJvK8fVBw**&0.9538131789304316",this.Account.Text);
                         this.verImage.Source = new BitmapImage(new Uri(verImageUrl));
-                        ////需要验证码
                         break;
                     default:
                         break;

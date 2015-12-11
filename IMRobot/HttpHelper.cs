@@ -11,7 +11,17 @@ namespace IMRobot
 {
     public class HttpHelper
     {
-        public HttpClient client = new HttpClient();
+        public HttpClientHandler handler = new HttpClientHandler();
+
+        public HttpClient client;
+
+        public HttpHelper()
+        {
+            handler.UseCookies = true;
+            client = new HttpClient(handler);
+        }
+
+       
 
         public string GetHttpResponseString(string requestUri)
         {

@@ -29,6 +29,11 @@ namespace IMRobot
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 账号框失去焦点，验证账号
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Account_LostFocus(object sender, RoutedEventArgs e)
         {
             BitmapImage image = new BitmapImage();
@@ -39,12 +44,21 @@ namespace IMRobot
         }
 
 
-
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             this.qqHelper.Login(this.pawd.Text, this.verCode.Text, this.Account.Text);
         }
 
+        /// <summary>
+        /// 取消
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Cancle_Click(object sender, RoutedEventArgs e)
         {
 

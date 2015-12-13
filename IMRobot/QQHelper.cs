@@ -19,6 +19,8 @@ namespace IMRobot
 
         private string qquin = string.Empty;
 
+        private string codeString = string.Empty;
+
         public QQHelper()
         {
             webBrowser.Navigate(System.IO.Path.GetFullPath("webqq.html"));
@@ -47,13 +49,17 @@ namespace IMRobot
                 {
                     case "0":
                         ////不需要验证码
+                        this.verifysession = mc[3].Value;
+                        this.qquin = mc[2].Value;
+                        this.codeString = mc[1].Value;
                         break;
                     case "1":
                         ////需要验证码
                         string verImageUrl = string.Format("https://ssl.captcha.qq.com/getimage?uin={0}&aid=522005705&cap_cd={1}&0.9538131789304316", account, mc[1]);
                         System.Drawing.Image img = httpHelper.GetHttpResponseImage(verImageUrl);
-                        image = this.BitmapToBitmapImage((System.Drawing.Bitmap)img);
+                        image = this.BitmapToBitmapImage(new System.Drawing.Bitmap(img));
                         this.verifysession = httpHelper.handler.CookieContainer.GetCookies(new Uri(verImageUrl))["verifysession"].ToString();
+                        this.qquin = mc[2].Value;
                         break;
                     default:
                         break;
@@ -62,23 +68,25 @@ namespace IMRobot
             return image != null;
         }
 
-        /// <summary>
-        /// 图片转换
-        /// </summary>
-        /// <param name="bitmap"></param>
-        /// <returns></returns>
-        private BitmapImage BitmapToBitmapImage(System.Drawing.Bitmap bitmap)
+        public BitmapImage BitmapToBitmapImage(System.Drawing.Bitmap bitmap)
         {
+            System.Drawing.Bitmap bitmapSource = new System.Drawing.Bitmap(bitmap.Width, bitmap.Height);
+            int i, j;
+            for (i = 0; i < bitmap.Width; i++)
+                for (j = 0; j < bitmap.Height; j++)
+                {
+                    System.Drawing.Color pixelColor = bitmap.GetPixel(i, j);
+                    System.Drawing.Color newColor = System.Drawing.Color.FromArgb(pixelColor.R, pixelColor.G, pixelColor.B);
+                    bitmapSource.SetPixel(i, j, newColor);
+                }
             BitmapImage bitmapImage = new BitmapImage();
-
             using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
             {
-                bitmap.Save(ms, bitmap.RawFormat);
+                bitmapSource.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+
                 bitmapImage.BeginInit();
-                bitmapImage.StreamSource = ms;
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = new System.IO.MemoryStream(ms.ToArray());
                 bitmapImage.EndInit();
-                bitmapImage.Freeze();
             }
 
             return bitmapImage;
@@ -87,8 +95,9 @@ namespace IMRobot
         public bool Login(string pwd, string verifiCode, string account)
         {
             ///获取密文
+            verifiCode = string.IsNullOrEmpty(verifiCode) ? this.codeString : verifiCode;
             string p = this.webBrowser.InvokeScript("QXWEncodePwd", new object[] { this.qquin, pwd, verifiCode }).ToString();
-            string verAccountUrl = string.Format("https://ssl.ptlogin2.qq.com/login?u={0}&verifycode={1}&pt_vcode_v1=0&pt_verifysession_v1={2}&p={3}&pt_randsalt=0&u1=https%3A%2F%2Fmail.qq.com%2Fcgi-bin%2Flogin%3Fvt%3Dpassport%26vm%3Dwpt%26ft%3Dloginpage%26target%3D%26account%3D2949575&ptredirect=1&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=11-23-1449812239662&js_ver=10141&js_type=1&login_sig=JY6zkbxK92OUp5F5mgRGZqWv1hlabR9B4pNFVX6OSrmPv3xnMBjc3SXb1tn7QxwP&pt_uistyle=25&aid=522005705&daid=4&", account, verifiCode, this,verifysession, p);
+            string verAccountUrl = string.Format("https://ssl.ptlogin2.qq.com/login?u={0}&verifycode={1}&pt_vcode_v1=0&pt_verifysession_v1={2}&p={3}&pt_randsalt=0&u1=https%3A%2F%2Fmail.qq.com%2Fcgi-bin%2Flogin%3Fvt%3Dpassport%26vm%3Dwpt%26ft%3Dloginpage%26target%3D%26account%3D2949575&ptredirect=1&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=11-23-1449812239662&js_ver=10141&js_type=1&login_sig=JY6zkbxK92OUp5F5mgRGZqWv1hlabR9B4pNFVX6OSrmPv3xnMBjc3SXb1tn7QxwP&pt_uistyle=25&aid=522005705&daid=4&", account, verifiCode, verifysession, p);
             string result = httpHelper.GetHttpResponseString(verAccountUrl);
             Regex regex = new Regex(@"(?<=')[^,]*?(?=')");
             MatchCollection mc = regex.Matches(result);

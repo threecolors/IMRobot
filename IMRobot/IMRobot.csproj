@@ -61,6 +61,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -173,6 +174,10 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="abc.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JavaScript1.js" />
     <Content Include="Resource\ico\webchat.ico" />
     <Content Include="webqq.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

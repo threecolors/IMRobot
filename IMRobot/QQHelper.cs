@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 
 namespace IMRobot
@@ -23,7 +23,8 @@ namespace IMRobot
 
         public QQHelper()
         {
-            webBrowser.Navigate(System.IO.Path.GetFullPath("webqq.html"));
+            webBrowser.Navigate(System.IO.Path.GetFullPath("abc.html"));
+            webBrowser.ScriptErrorsSuppressed = true;
         }
 
         /// <summary>
@@ -58,7 +59,7 @@ namespace IMRobot
                         string verImageUrl = string.Format("https://ssl.captcha.qq.com/getimage?uin={0}&aid=522005705&cap_cd={1}&0.9538131789304316", account, mc[1]);
                         System.Drawing.Image img = httpHelper.GetHttpResponseImage(verImageUrl);
                         image = this.BitmapToBitmapImage(new System.Drawing.Bitmap(img));
-                        this.verifysession = httpHelper.handler.CookieContainer.GetCookies(new Uri(verImageUrl))["verifysession"].ToString();
+                        this.verifysession = httpHelper.handler.CookieContainer.GetCookies(new Uri(verImageUrl))["verifysession"].ToString().Split('=')[1];
                         this.qquin = mc[2].Value;
                         break;
                     default:
@@ -95,8 +96,9 @@ namespace IMRobot
         public bool Login(string pwd, string verifiCode, string account)
         {
             ///获取密文
+            string salt = this.webBrowser.Document.InvokeScript("GetSalt", new object[] { account }).ToString();
             verifiCode = string.IsNullOrEmpty(verifiCode) ? this.codeString : verifiCode;
-            string p = this.webBrowser.InvokeScript("QXWEncodePwd", new object[] { this.qquin, pwd, verifiCode }).ToString();
+            string p = this.webBrowser.Document.InvokeScript("GetEncryption", new object[] { pwd, this.qquin, verifiCode }).ToString();
             string verAccountUrl = string.Format("https://ssl.ptlogin2.qq.com/login?u={0}&verifycode={1}&pt_vcode_v1=0&pt_verifysession_v1={2}&p={3}&pt_randsalt=0&u1=https%3A%2F%2Fmail.qq.com%2Fcgi-bin%2Flogin%3Fvt%3Dpassport%26vm%3Dwpt%26ft%3Dloginpage%26target%3D%26account%3D2949575&ptredirect=1&h=1&t=1&g=1&from_ui=1&ptlang=2052&action=11-23-1449812239662&js_ver=10141&js_type=1&login_sig=JY6zkbxK92OUp5F5mgRGZqWv1hlabR9B4pNFVX6OSrmPv3xnMBjc3SXb1tn7QxwP&pt_uistyle=25&aid=522005705&daid=4&", account, verifiCode, verifysession, p);
             string result = httpHelper.GetHttpResponseString(verAccountUrl);
             Regex regex = new Regex(@"(?<=')[^,]*?(?=')");

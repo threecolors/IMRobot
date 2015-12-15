@@ -58,6 +58,10 @@
     </Win32Resource>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.MSScriptControl">
+      <HintPath>..\DLL\Interop.MSScriptControl.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -177,7 +181,6 @@
     <Content Include="abc.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="JavaScript1.js" />
     <Content Include="Resource\ico\webchat.ico" />
     <Content Include="webqq.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

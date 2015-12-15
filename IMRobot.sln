@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IMRobot", "IMRobot\IMRobot.csproj", "{8623CE4A-7EF4-4D37-B71F-B0F3AA073FF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{DF5C5F5C-D1C0-46D4-9A1B-66094164B674}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{8623CE4A-7EF4-4D37-B71F-B0F3AA073FF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8623CE4A-7EF4-4D37-B71F-B0F3AA073FF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8623CE4A-7EF4-4D37-B71F-B0F3AA073FF4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DF5C5F5C-D1C0-46D4-9A1B-66094164B674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DF5C5F5C-D1C0-46D4-9A1B-66094164B674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DF5C5F5C-D1C0-46D4-9A1B-66094164B674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DF5C5F5C-D1C0-46D4-9A1B-66094164B674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

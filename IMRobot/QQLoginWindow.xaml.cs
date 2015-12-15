@@ -51,7 +51,12 @@ namespace IMRobot
         /// <param name="e"></param>
         private void Login_Click(object sender, RoutedEventArgs e)
         {
-            this.qqHelper.Login(this.pawd.Text, this.verCode.Text, this.Account.Text);
+            string loginStr = this.qqHelper.Login(this.pawd.Text, this.verCode.Text, this.Account.Text);
+            if (loginStr.Contains("成功"))
+            {
+                Func<QQHelper> func = () => { return this.qqHelper; };
+                CommonCache.SetRefundParamSetCacheData<QQHelper>(new Func<QQHelper>(() => { return this.qqHelper; }), this.Account.Text, 30, null);
+            }
         }
 
         /// <summary>

@@ -21,6 +21,12 @@ namespace IMRobot
     /// </summary>
     public partial class QQLoginWindow : Window
     {
+        /// <summary>
+        /// 事件的方式 在窗口间传递参数
+        /// </summary>
+        public delegate void PassValuesHandler(object sender, string e);
+        public event PassValuesHandler PassValuesEvent;
+
 
         private QQHelper qqHelper = new QQHelper();
 
@@ -56,6 +62,7 @@ namespace IMRobot
             {
                 Func<QQHelper> func = () => { return this.qqHelper; };
                 CommonCache.SetRefundParamSetCacheData<QQHelper>(new Func<QQHelper>(() => { return this.qqHelper; }), this.Account.Text, 30, null);
+                PassValuesEvent(this, this.Account.Text);
             }
         }
 

@@ -90,5 +90,27 @@ namespace IMRobot
                 }
             }
         }
+
+        /// <summary>
+        /// 添加账号按钮
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            QQLoginWindow qqLogWindow = new QQLoginWindow();
+            qqLogWindow.PassValuesEvent += QQLogWindow_PassValuesEvent;
+            qqLogWindow.ShowDialog();
+        }
+
+        /// <summary>
+        /// 登录成功返回参数
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QQLogWindow_PassValuesEvent(object sender, string e)
+        {
+            QQHelper qqhelper = CommonCache.GetCacheData<QQHelper>(e);
+        }
     }
 }

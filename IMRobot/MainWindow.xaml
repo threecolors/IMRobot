@@ -45,6 +45,7 @@
                     </TabItem.Background>
                     <Grid>
                         <TextBlock>aassdasvasdf</TextBlock>
+                        <TextBlock Name="AddAccount"  Style="{StaticResource FIcon}"  Text="&#xe615;" MouseLeftButtonDown="AddAccount_MouseLeftButtonDown"></TextBlock>
                     </Grid>
                 </TabItem>
                 <!--<TabItem Header="微信"  Style="{DynamicResource TabItemStyle}" Margin="100,0,0,0" Height="70" Width="70" >

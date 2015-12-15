@@ -115,17 +115,17 @@ namespace IMRobot
             string result = httpHelper.GetHttpResponseString(verAccountUrl);
             Regex regex = new Regex(@"(?<=')[^,]*?(?=')");
             MatchCollection mc = regex.Matches(result);
-            if (mc[0].Value == "0"&&mc[3].Equals("1"))
+            if (mc[0].Value == "0" && mc[3].Value.Equals("1"))
             {
-                loginStr = string.Format("登录成功,欢迎您{0}",mc[5].Value);
-                logSuccessUrl = mc[3].Value;
+                loginStr = string.Format("登录成功,欢迎您{0}", mc[5].Value);
+                logSuccessUrl = mc[2].Value;
             }
             else
             {
                 loginStr = mc[2].Value;
             }
 
-            return loginStr;         
+            return loginStr;
         }
     }
 }

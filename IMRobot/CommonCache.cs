@@ -135,5 +135,57 @@ namespace IMRobot
                 return default(T);
             }
         }
+
+        /// <summary>
+        /// 刷新缓存
+        /// </summary>
+        /// <param name="dele"></param>
+        /// <param name="cacheKey"></param>
+        /// <param name="cacheDuration"></param>
+        /// <param name="objs"></param>
+        /// <returns></returns>
+        public static bool RefreshCache<T>(Delegate dele, string cacheKey, int cacheDuration, params object[] objs)
+        {
+            bool ret = true;
+            if (Monitor.TryEnter(lockobj, 10000))
+            {
+                try
+                {
+                    if (HttpRuntime.Cache.Get(cacheKey) != null)
+                    {
+                        HttpRuntime.Cache.Remove(cacheKey);
+                    }
+
+                    var methodInfo = dele.Method;
+
+                    var result = (T)methodInfo.Invoke(dele.Target, objs);
+
+                    var cacheTime = DateTime.Now.AddMinutes(cacheDuration);
+
+                    HttpRuntime.Cache.Add(cacheKey, result, null, cacheTime, Cache.NoSlidingExpiration, CacheItemPriority.NotRemovable, null);
+                }
+                catch (Exception ex)
+                {
+                    //AppException appex = new AppException("设置缓存错误：" + ex.Message, ex, ExceptionLevel.Error);
+                    //LogManager.Log.WriteException(appex);
+                    ret = false;
+                }
+                finally
+                {
+                    ////解除锁定
+                    Monitor.Exit(lockobj);
+                }
+
+                ret = true;
+            }
+            else
+            {
+                //AppException appex = new AppException("设置缓存线程锁定超时", ExceptionLevel.Info);
+                //LogManager.Log.WriteException(appex);
+                ret = false;
+            }
+
+            return ret;
+        }
     }
 }

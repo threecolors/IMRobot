@@ -12,13 +12,13 @@ namespace IMRobot
 {
     public class QQHelper
     {
-        private HttpHelper httpHelper = new HttpHelper();
+        public HttpHelper httpHelper = new HttpHelper();
 
         private WebBrowser webBrowser = new WebBrowser();
 
-        private string verifysession = string.Empty;
+        public string verifysession = string.Empty;
 
-        private string codeString = string.Empty;
+        public string codeString = string.Empty;
 
         public string logSuccessUrl = string.Empty;
 

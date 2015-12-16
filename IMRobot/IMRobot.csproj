@@ -83,6 +83,7 @@
     </ApplicationDefinition>
     <Compile Include="CommonCache.cs" />
     <Compile Include="HttpHelper.cs" />
+    <Compile Include="LoginSuccessEventArgs.cs" />
     <Compile Include="QQHelper.cs" />
     <Compile Include="QQLoginWindow.xaml.cs">
       <DependentUpon>QQLoginWindow.xaml</DependentUpon>

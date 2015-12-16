@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Configuration;
 using System.Text.RegularExpressions;
+using System.Net;
 
 namespace IMRobot
 {
@@ -24,8 +25,8 @@ namespace IMRobot
         /// <summary>
         /// 事件的方式 在窗口间传递参数
         /// </summary>
-        public delegate void PassValuesHandler(object sender, string e);
-        public event PassValuesHandler PassValuesEvent;
+        public delegate void LoginSuccessHandler(object sender, LoginSuccessEventArgs e);
+        public event LoginSuccessHandler LoginSuccessEvent;
 
 
         private QQHelper qqHelper = new QQHelper();
@@ -58,11 +59,16 @@ namespace IMRobot
         private void Login_Click(object sender, RoutedEventArgs e)
         {
             string loginStr = this.qqHelper.Login(this.pawd.Text, this.verCode.Text, this.Account.Text);
+
             if (loginStr.Contains("成功"))
             {
-                Func<QQHelper> func = () => { return this.qqHelper; };
-                CommonCache.SetRefundParamSetCacheData<QQHelper>(new Func<QQHelper>(() => { return this.qqHelper; }), this.Account.Text, 30, null);
-                PassValuesEvent(this, this.Account.Text);
+                CommonCache.SetRefundParamSetCacheData<HttpHelper>(new Func<HttpHelper>(() => { return this.qqHelper.httpHelper; }), this.Account.Text, 30, null);
+                //LoginSuccessEvent(this, new LoginSuccessEventArgs() { Account = this.Account.Text, LogSuccessUrl = this.qqHelper.logSuccessUrl, HttpHelper=this.qqHelper.httpHelper });
+                //CookieCollection cookieCollection = this.qqHelper.httpHelper.handler.CookieContainer.GetCookies(new Uri(this.qqHelper.logSuccessUrl));
+            }
+            else
+            {
+                this.verImage.Source = null;
             }
         }
 

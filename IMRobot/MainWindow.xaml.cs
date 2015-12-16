@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,7 +101,7 @@ namespace IMRobot
         private void AddAccount_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             QQLoginWindow qqLogWindow = new QQLoginWindow();
-            qqLogWindow.PassValuesEvent += QQLogWindow_PassValuesEvent;
+            qqLogWindow.LoginSuccessEvent += QQLogWindow_LoginSuccessEvent;
             qqLogWindow.ShowDialog();
         }
 
@@ -108,9 +110,32 @@ namespace IMRobot
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void QQLogWindow_PassValuesEvent(object sender, string e)
+        private void QQLogWindow_LoginSuccessEvent(object sender, LoginSuccessEventArgs e)
         {
-            QQHelper qqhelper = CommonCache.GetCacheData<QQHelper>(e);
+            ////根据返回的参数处理对象
+            HttpHelper httphelper = CommonCache.GetCacheData<HttpHelper>(e.Account);
+            CookieCollection cookieCollection = httphelper.handler.CookieContainer.GetCookies(new Uri(e.LogSuccessUrl));
+            //httphelper.client.
+            //List<Cookie> cookieList = new List<Cookie>();
+            //foreach (Cookie item in cookieCollection)
+            //{
+            //    ////cookie去重
+            //    if (!cookieList.Exists(c => c.Equals(item)))
+            //    {
+            //        cookieList.Add(item);
+            //    }
+            //}
+
+
+            //httphelper = new HttpHelper();
+            //httphelper.handler.CookieContainer = new CookieContainer();
+            //foreach (Cookie item in cookieList)
+            //{
+            //    httphelper.handler.CookieContainer.Add(item);
+            //}
+
+            ////根据返回的
+            string result = httphelper.GetHttpResponseString(e.LogSuccessUrl);
         }
     }
 }
